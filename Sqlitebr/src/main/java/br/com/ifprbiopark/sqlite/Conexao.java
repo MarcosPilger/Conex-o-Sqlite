@@ -5,9 +5,7 @@
  */
 package br.com.ifprbiopark.sqlite;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +19,10 @@ public class Conexao {
     }
     public static void conect(){
         try {
-            Connection c = DriverManager.getConnection("jbdc:sqlite:tds.db");
+            Connection c = DriverManager.getConnection("jdbc:sqlite:tds.db");
+            Statement stm = c.createStatement();
+            // criando uma tabela
+            stm.execute("CREATE TABLE IF NOT EXISTS ALUNO(ID INTEGER, NOME VARCHAR(50)");
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
